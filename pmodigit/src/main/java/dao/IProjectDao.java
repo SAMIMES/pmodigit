@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import entities.Project;
+import entity.Project;
 
 
 public interface IProjectDao {

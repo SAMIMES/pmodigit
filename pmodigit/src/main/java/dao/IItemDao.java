@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import entities.Item;;
+import entity.Item;;
 
 public interface IItemDao {
 	

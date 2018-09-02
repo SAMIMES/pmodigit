@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -11,25 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entities.Item;
-import entities.Project;
-import entities.ProjectReview;
+import entity.Project;
 import utils.EntityManagerUtil;
 
 /**
- * Servlet implementation class searchPRServ
+ * Servlet implementation class addProjectServ
  */
-@WebServlet("/searchPRServ")
-public class searchPRServ extends HttpServlet {
+@WebServlet("/addProjects")
+public class addProjectServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private EntityManager entityManager;
 
+	private Project project;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public searchPRServ() {
+    public addProjectServ() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,34 +48,37 @@ public class searchPRServ extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		ProjectReview pr = new ProjectReview();
-
 		entityManager = EntityManagerUtil.getEntityManager();
 		
 
 		String ptitle= request.getParameter("projecttitle");
-		
-		System.out.println(ptitle);
+		String customer= request.getParameter("cus");
+		String pm= request.getParameter("PM");
+		Calendar calendar = Calendar.getInstance();
+		java.sql.Date ourJavaDateObject = new java.sql.Date(calendar.getTime().getTime());
 
 
+		project = new Project();
+		project.setProject_title(ptitle);
+		project.setCustomer(customer);
+		project.setPm(pm);
+		project.setDate(ourJavaDateObject);
 		
 		entityManager.getTransaction().begin();
+		entityManager.persist(project);
 		
 		@SuppressWarnings("unchecked")
-		List<ProjectReview> prs = entityManager.createQuery("SELECT p FROM pr p").getResultList();
+		List<Project> projects = entityManager.createQuery("SELECT p FROM project p order by p.project_id desc").getResultList();
 		
 		
 	    entityManager.getTransaction().commit();
 	    entityManager.close();
 		
-		for(ProjectReview p:prs){
-			System.out.println("id="+p.getId_pr());
-			System.out.println("overall: " + p.overallStatus(p.getItems()));
-			for(Item i: p.getItems()){
-				System.out.println(i.getItem());
-			}
+		for(Project p:projects){
+			System.out.println(p.getProject_id());
 		}
-		
+		request.getSession().setAttribute("listprojects", projects);
+		response.sendRedirect("temp/pcreation.jsp");		
 		
 	}
 

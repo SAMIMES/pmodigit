@@ -1,21 +1,18 @@
-package controllers;
+package controller;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.synth.SynthSpinnerUI;
 
-import dao.ItemDao;
 import dao.PrDao;
-import entities.Item;
-import entities.ProjectReview;
+import entity.ProjectReview;
 import utils.EntityManagerUtil;
 
 /**
@@ -25,10 +22,8 @@ import utils.EntityManagerUtil;
 public class listItemServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ItemDao itemdao;
 	private List<ProjectReview> liste_pr;
 	private PrDao prdao;
-	private String s;
 
 	EntityManager entitymanager= EntityManagerUtil.getEntityManager();
     /**

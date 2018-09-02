@@ -3,10 +3,8 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
-import entities.Item;
-import entities.ProjectReview;
+import entity.ProjectReview;
 import utils.EntityManagerUtil;
 
 public class PrDao implements IPreviewDao{

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import entities.Item;
+import entity.Item;
 import utils.EntityManagerUtil;
 
 public class ItemDao implements IItemDao{

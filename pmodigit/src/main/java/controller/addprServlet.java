@@ -1,17 +1,15 @@
-package controllers;
+package controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
+
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,9 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ItemDao;
-import entities.Item;
-import entities.Project;
-import entities.ProjectReview;
+import entity.Item;
+import entity.Project;
+import entity.ProjectReview;
 import utils.EntityManagerUtil;
 
 
@@ -38,7 +36,7 @@ public class addprServlet extends HttpServlet {
 	//main classes
 	
 	private ProjectReview pr;
-	private Project p;
+
 
     private boolean saved;
 	
@@ -71,7 +69,6 @@ public class addprServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		String performer = request.getParameter("performer");
-		String ptitle = request.getParameter("projecttitle");
 		String date_pr =  request.getParameter("date");
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");

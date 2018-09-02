@@ -1,20 +1,18 @@
-package entities;
+package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity(name="pr")
 public class ProjectReview implements Serializable{
+	static final long serialVersionUID = 1L;
 	@Id @GeneratedValue
 	private Long id_pr;	
 	private Date pr_date;

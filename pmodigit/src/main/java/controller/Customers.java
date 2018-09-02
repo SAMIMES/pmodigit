@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +17,7 @@ import utils.acompleteUtils;
  */
 @WebServlet(name = "Customers", urlPatterns = {"/Customers"})
 public class Customers extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

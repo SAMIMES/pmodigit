@@ -1,4 +1,4 @@
-package entities;
+package entity;
 
 import java.sql.Date;
 import java.util.List;
@@ -13,13 +13,10 @@ public class Project {
 		@GeneratedValue
 		private String project_id;
 		@Id
-		@Column(name="project_title")
 		private String project_title;
-		@Column(name="customer")
 		private String customer;
-		@Column(name="pm")
 		private String pm;
-		@Column(name="insert_date")
+		@Column(name="creation_date")
 		private Date date;
 		@OneToMany
 		private List<ProjectReview> project_reviews;

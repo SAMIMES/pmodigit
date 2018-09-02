@@ -1,9 +1,8 @@
 package dao;
 
 import java.util.List;
-import java.util.Map;
 
-import entities.ProjectReview;
+import entity.ProjectReview;
 
 public interface IPreviewDao {
 	public void addPR(ProjectReview pr);
