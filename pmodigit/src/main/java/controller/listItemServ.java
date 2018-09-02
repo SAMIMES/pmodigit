@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.PrDao;
 import entity.ProjectReview;
-import utils.EntityManagerUtil;
+import util.EntityManagerUtil;
 
 /**
  * Servlet implementation class listItemServ

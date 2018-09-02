@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entity.Item;
 import entity.ProjectReview;
-import utils.EntityManagerUtil;
+import util.EntityManagerUtil;
 
 /**
  * Servlet implementation class searchPRServ

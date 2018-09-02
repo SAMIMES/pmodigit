@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.Project;
-import utils.EntityManagerUtil;
+import util.EntityManagerUtil;
 
 /**
  * Servlet implementation class addProjectServ

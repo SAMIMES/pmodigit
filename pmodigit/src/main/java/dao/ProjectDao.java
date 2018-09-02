@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import entity.Project;
-import utils.EntityManagerUtil;
+import util.EntityManagerUtil;
 
 public class ProjectDao implements IProjectDao{
 	private EntityManager entitymanager = EntityManagerUtil.getEntityManager();

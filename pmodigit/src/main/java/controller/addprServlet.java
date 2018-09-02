@@ -20,7 +20,7 @@ import dao.ItemDao;
 import entity.Item;
 import entity.Project;
 import entity.ProjectReview;
-import utils.EntityManagerUtil;
+import util.EntityManagerUtil;
 
 
 /**
