@@ -16,7 +16,7 @@ import util.acompleteUtils;
  * Servlet implementation class serv
  */
 @WebServlet(name = "PM", urlPatterns = {"/PM"})
-public class PM extends HttpServlet {
+public class pmlistServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     @Override
