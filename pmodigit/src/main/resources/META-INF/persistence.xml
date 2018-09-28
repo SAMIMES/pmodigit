@@ -6,8 +6,8 @@
 		<!--<non-jta-data-source>java:comp/DefaultDataSource</non-jta-data-source>-->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-		  <property name="javax.persistence.schema-generation.database.action"
-				value="drop-and-create" />  
+	      <!--    <property name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />    -->
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pmodigit" /> <!-- BD Mane -->
 			<property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->

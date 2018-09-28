@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import entity.ProjectReview;
 import util.EntityManagerUtil;
 
-public class PrDao implements IPreviewDao{
+public class PrImplDao implements IPreviewDao{
 	
 	private EntityManager entitymanager = EntityManagerUtil.getEntityManager();
 	
@@ -39,28 +39,25 @@ public class PrDao implements IPreviewDao{
 	}
 
 	@Override
-	public ProjectReview findOne(Long id) {
-		ProjectReview pr=new ProjectReview();
-		try {
-			pr = entitymanager.find(ProjectReview.class, id);
-		} catch (Exception e) {
-		      entitymanager.getTransaction().rollback();
-		    }
+	public ProjectReview findOne(Long i) {
+		ProjectReview pr= entitymanager.find(ProjectReview.class, i);
+	
 		return pr;
 		
 	}
 
 	@Override
 	public void remove(Long id) {
-		// TODO Auto-generated method stub
-		  try {
+		
 		      entitymanager.getTransaction().begin();
 		      ProjectReview it = (ProjectReview) entitymanager.find(ProjectReview.class, id);
+		      try{
 		      entitymanager.remove(it);
-		      entitymanager.getTransaction().commit();
-		    } catch (Exception e) {
-		      entitymanager.getTransaction().rollback();
-		    }
+		      }
+		      catch (Exception e) {
+			      entitymanager.getTransaction().rollback();
+			    }
+		   
 	}
 
 	@Override

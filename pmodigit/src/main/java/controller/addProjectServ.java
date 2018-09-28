@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import entity.Project;
+import mapper.CSVMapper;
 import util.EntityManagerUtil;
 
 /**
@@ -77,6 +78,7 @@ public class addProjectServ extends HttpServlet {
 		for(Project p:projects){
 			System.out.println(p.getProject_id());
 		}
+		//CSVMapper.addCSVList();
 		request.getSession().setAttribute("listprojects", projects);
 		response.sendRedirect("temp/pcreation.jsp");		
 		

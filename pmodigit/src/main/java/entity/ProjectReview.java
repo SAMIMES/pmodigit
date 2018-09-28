@@ -4,11 +4,17 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 
 @Entity(name="pr")
 public class ProjectReview implements Serializable{
@@ -19,13 +25,14 @@ public class ProjectReview implements Serializable{
 	private String performer, participants;
 	private int prn;
 	private int prv;
-	@OneToMany
+	private String status;
+	@OneToMany(mappedBy="project_review",orphanRemoval = true)
 	private List<Item> items;
-	@OneToOne
-	private Project projet;
+	@ManyToOne
+	@JoinColumn(name = "project_title")
+	private Project project;
 	
-	//@OneToMany
-	//private Set<Scope> scopes = new HashSet<Scope>();
+
 	
 	public ProjectReview(){
 		
@@ -116,11 +123,19 @@ public class ProjectReview implements Serializable{
 	}
 
 	public Project getProjet() {
-		return projet;
+		return project;
 	}
 
-	public void setProjet(Project projet) {
-		this.projet = projet;
+	public void setProjet(Project project) {
+		this.project = project;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 		

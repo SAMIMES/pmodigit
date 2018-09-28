@@ -1,15 +1,25 @@
 package entity;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.eclipse.persistence.annotations.CascadeOnDelete;
+
+import mapper.CSVMapper;
 @Entity(name="project")
-public class Project {
+public class Project implements Serializable{
 		@GeneratedValue
 		private String project_id;
 		@Id
@@ -18,8 +28,12 @@ public class Project {
 		private String pm;
 		@Column(name="creation_date")
 		private Date date;
-		@OneToMany
+		
+		@OneToMany(mappedBy="project",orphanRemoval = true)
 		private List<ProjectReview> project_reviews;
+		
+		@OneToMany(mappedBy="project",orphanRemoval = true)
+		private List<ProjectReview> quality_assurance;
 		
 		public Project(String project_title, String customer, String project_id, String pm, Date date) {
 			super();
@@ -30,7 +44,9 @@ public class Project {
 			this.date = date;
 		}
 
-		public Project(){}
+		public Project(){
+			
+		}
 		
 	
 		public String getProject_title() {
@@ -67,7 +83,7 @@ public class Project {
 		public void setDate(Date date) {
 			this.date = date;
 		}
-
+		
 		public List<ProjectReview> getProject_reviews() {
 			return project_reviews;
 		}
@@ -75,6 +91,15 @@ public class Project {
 		public void setProject_reviews(List<ProjectReview> project_reviews) {
 			this.project_reviews = project_reviews;
 		}
+
+		public List<ProjectReview> getQuality_assurance() {
+			return quality_assurance;
+		}
+
+		public void setQuality_assurance(List<ProjectReview> quality_assurance) {
+			this.quality_assurance = quality_assurance;
+		}
+		
 		
 		
 }

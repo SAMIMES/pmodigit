@@ -12,16 +12,12 @@ public class ItemDao implements IItemDao{
 	private EntityManager entitymanager = EntityManagerUtil.getEntityManager();
 	@Override
 	public void addItem(Item pr) {
-		try{
 		  entitymanager.getTransaction().begin();
 	      entitymanager.persist(pr);
 	      entitymanager.getTransaction().commit();
-		} catch(Exception e){
-			entitymanager.getTransaction().rollback();
-		}
-		finally{
-			entitymanager.close();
-		}
+		
+		 entitymanager.close();
+	
 	}
 
 	@Override

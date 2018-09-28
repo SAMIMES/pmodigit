@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.PrDao;
+import dao.DaoException;
+import dao.PrImplDao;
+import dao.ProjectImplDao;
+import entity.Project;
 import entity.ProjectReview;
 import util.EntityManagerUtil;
 
@@ -22,8 +25,7 @@ import util.EntityManagerUtil;
 public class listItemServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private List<ProjectReview> liste_pr;
-	private PrDao prdao;
+	boolean flag;
 
 	EntityManager entitymanager= EntityManagerUtil.getEntityManager();
     /**
@@ -38,8 +40,16 @@ public class listItemServ extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		flag = false;
+		ProjectImplDao pDao=new ProjectImplDao();
+		List<Project> projects = pDao.findAll();
+		System.out.println("get"+projects.size());
+		request.getSession().setAttribute("liste_projects", projects);
+		request.getSession().setAttribute("flag", flag);
+		this.getServletContext().getRequestDispatcher("/temp/list.jsp").forward( request, response );
+		
 	}
 
 	/**
@@ -49,14 +59,9 @@ public class listItemServ extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		//List<Item> liste_items = itemdao.findAll() ;
-		prdao = new PrDao();
 		
-		liste_pr = prdao.findAll();
-		for(ProjectReview p:liste_pr){
-			System.out.println(p.getId_pr());
-		}
-		request.getSession().setAttribute("liste", liste_pr);
-		response.sendRedirect("temp/list.jsp");		
+	
+		
 		
 	}
 

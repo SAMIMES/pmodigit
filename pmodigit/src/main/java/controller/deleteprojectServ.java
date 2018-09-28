@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProjectImplDao;
+import entity.Project;
+
 /**
  * Servlet implementation class deleteprojectServ
  */
-@WebServlet("/deleteprojectServ")
+@WebServlet("/delete")
 public class deleteprojectServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private ProjectImplDao pDao;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,8 +29,21 @@ public class deleteprojectServ extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		boolean flag = false;
+		String result ="";
+		pDao = new ProjectImplDao();
+		String title = request.getParameter("id");
+		try{
+		pDao.remove(title);
+		result = "the project was successfully deleted";
+		flag=true;
+		} catch(IllegalArgumentException e){
+			result="Project not found or already deleted";
+			flag=false;
+		}
+		request.setAttribute("result", result);
+		request.setAttribute("flag", flag);
+		this.getServletContext().getRequestDispatcher("/temp/list.jsp").forward( request, response );
 	}
 
 	/**
@@ -36,6 +52,8 @@ public class deleteprojectServ extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		
 	}
 
 }

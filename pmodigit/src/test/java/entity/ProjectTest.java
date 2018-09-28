@@ -16,7 +16,7 @@ public class ProjectTest {
 		p.setProject_title("title1");
 		p.setCustomer("EDF");
 		assertEquals("P1", p.getProject_id());
-		assertEquals("title1", p.getProject_title());
+		assertEquals("tit", p.getProject_title());
 		assertEquals("EDF", p.getCustomer());
 	}
 

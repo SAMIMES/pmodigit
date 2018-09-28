@@ -1,22 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<!DOCTYPE html>
+<%@ page import="entity.User" %>  
 <html>
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/pmodigit/css/bootstrap.min.css" >
     <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet">
-	<link  href="../css/all.min.css" rel="stylesheet">
-     <style>
-            .ui-autocomplete-loading {
-                background: white url("img/anim_16x16.gif") right center no-repeat;
-            }
-        </style>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="/pmodigit/css/style.css" rel="stylesheet">
+	<link  href="/pmodigit/css/all.min.css" rel="stylesheet">
+	
+	
+     <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"  rel="stylesheet" >
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+
+$(function () {
+
+    $("#bugs").autocomplete({
+        source: "/pmodigit/Titles",
+        minLength: 1,
+    });
+});
+</script>
+
 
        
 
@@ -28,44 +39,43 @@
 
       <div class="container">
 	
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
-	  <a class="navbar-brand" href="../index.html">digit<font color="blue">PMO</font></a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
+           <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/pmodigit/index.jsp">pmo<font color="blue">Digit</font></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">Search</a>
-	      </li>
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Templates
-	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="pr_home.jsp">Project Review</a>
-	          <a class="dropdown-item" href="qa_home.html">Quality Assurance</a>
-	          <a class="dropdown-item" href="#">Action Follow-up</a>
-	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">Calendar</a>
-	        </div>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link disabled" href="#">Dashboard</a>
-	      </li>
-	    </ul>
-	    <!-- Navbar Search -->
-	      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="POST" action="../list">
-	      
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="pmodigit/temp/search.jsp">Search</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Templates
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/pmodigit/temp/pcreation.jsp">Project</a>
+          <a class="dropdown-item" href="/pmodigit/temp/pr_home.jsp">Project Review</a>
+           <a class="dropdown-item" href="/pmodigit/temp/pr_home.jsp">Project Closure</a>
+          <a class="dropdown-item" href="/pmodigit/temp/qa_home.html">Quality Assurance</a>
+          <a class="dropdown-item" href="#..">Action Follow-up</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Calendar</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Dashboard</a>
+      </li>
+       <!-- Navbar Search -->
+       
+       <li>
+       <form class="pl-5" method="POST" action="list">
 	        <div class="input-group">
-	        
-	          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+	          <input type="text" class="form-control" placeholder="Search by project title..." aria-label="Search" aria-describedby="basic-addon2">
 	          <div class="input-group-append">
 	            <button class="btn btn-primary" type="submit">
 	              <i class="fas fa-search"></i>
@@ -73,8 +83,105 @@
 	          </div>
 	        </div>
 	      </form>
-	  </div>
-	</nav>
+	      
+	     </li>
+	   </ul>
+	   <ul class="navbar-nav pull-right"> 
+	   <c:choose>
+	   <c:when test = "${res == false }">
+          
+         
+       <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" id="navbarDropdown" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Login <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                       <li class="px-3 py-2">
+                           <form method="POST" action="login">
+                                <div class="form-group">
+                                    <input name="username" placeholder="Username" class="form-control form-control-sm" type="text" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input name="password" placeholder="Password" class="form-control form-control-sm" type="password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                </div>
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+                                </div>
+                                
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Register</a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                
+       </li>
+       </c:when>
+       <c:when test = "${res == true}">
+            <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" id="navbarDropdown" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+                  
+                
+                    <c:choose>
+         
+         <c:when test = "${sessionUser.userType == 0}">
+           
+          User: <c:out value="${sessionUser.username}"></c:out> 
+          </c:when> 
+          <c:when test = "${sessionUser.userType == 1}">
+           Admin: <c:out value="${sessionUser.username}"></c:out> 
+           </c:when>
+           </c:choose>
+                     
+                     <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                       <li class="px-3 py-2">
+                           <form class="form" role="form">
+                                
+                                <div class="form-group text-center">
+                                    <small><a href="logout"> Logout </a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                
+       </li>
+         </c:when>
+         
+         <c:otherwise>
+          <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" id="navbarDropdown" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Login <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                       <li class="px-3 py-2">
+                           <form method="POST" action="login" role="form">
+                                <div class="form-group">
+                                    <input name="username" placeholder="Username" class="form-control form-control-sm" type="text" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input name="password" id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                </div>
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+                                </div>
+                                
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Register</a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                
+       </li>
+         </c:otherwise>
+       </c:choose>
+    </ul>
+   
+  </div>
+</nav>
 	<!-- <div class="card card-register mx-auto mt-5">
        <div class="card-header">Scope</div>
        
@@ -83,62 +190,51 @@
    
     
 
-<!-- <div class="alert-box success">Successful Alert !!!</div> -->
-<div class="alert-box failure">Failure Alert !!!</div>
-<div class="alert-box warning">Warning Alert !!!</div>	
-     		 
-     		 
 
-              
+     		 
+ 	
+      <!--   <c:out value="${sessionUtilisateur.username}">  Nooo </c:out>       -->
              
  
  <div class="accordion" id="accordionExample">
-   <form  action="../projectReview" method="post">
+   <form  action="/pmodigit/projectReview" method="post">
    
  	
-   <c:choose>
+
    
-	    <c:when test="${saved==true}">
+	    <c:if test="${saved == true}">
 	    
-	    		<c:out value="${saved}"> </c:out>
-	        <div class="alert-box success" role="alert" >
-	  				Project Review has been saved! <a href="pr_home.jsp" > click here to see details  </a>
+	    		
+	        <div class="alert alert-success" role="alert">
+  					Project Review has been saved! <a href="pr_home.jsp" > click here to see details  </a>
 			</div>
-	        <br />
+
 	        
-	    </c:when>    
+	    </c:if>    
 	    
-	    <c:otherwise>
-	        <div class="alert-box failure" role="alert">
-	  				This is a danger alert—check it out!
+	     <c:if test="${saved == false}">
+	      <div class="alert alert-danger" role="alert">
+	  				Project Title not found  <a href="/pmodigit/temp/pcreation.jsp" > click here to create project  </a>
 			</div>
-	    </c:otherwise>
+	    </c:if>  
 	 
-	</c:choose>
+	
       
   
-    <div class="form-group row mt-5">
-            
-             
-         <div class="col-md-4">
-          	<input name="projecttitle" class="form-control" type="text" placeholder="Project Title"> 
-         </div>
+    <div class="row mt-5">
+			<div class="col-12">
+		 <div class="input-group">
+          	<input id="bugs" name="ptitle" class="form-control" type="text" placeholder="Project Title"> 
+          </div>
+		</div>
+
          
- 
-         
-          <div class="col-md-4">
-          	<input name="performer" class="form-control" type="text" placeholder="Performed By"> 
-         </div>
-         
-           <div class="col-md-4">
-          	<input name="date" class="form-control" type="date" placeholder="Date"> 
-         </div>
      </div>
-    <div class="progress">
-  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    60%
-  </div>
-</div>
+     
+     
+            
+ 
+
      
   <div class="card card-register mx-auto mt-5">
     <div class="card-header" id="headingOne">
@@ -151,21 +247,19 @@
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 
-      <div class="card-body">
-          <h6 class="card-title">Special title treatment</h6>
-	
+      <div class="card-body">	
 	            <div class="form-group row">
             
               
 				<div class = "col-md-3">
-					<h5> Items </h5>   
+					<h5> Item </h5>   
 				</div>
                 <div class="col-md-1">
-              	 	<h5> Grades </h5>
+              	 	<h5> Grade </h5>
 				</div>
 				
                 <div class="col-md-8">
-               		<h5> Comments </h5>
+               		<h5> Comment </h5>
              	</div>
               
              </div>  <!--  row  -->
@@ -187,7 +281,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="orbcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="orbcomment" class="form-control" placeholder="ORB comment"></textarea>
                
                 </div>
               </div>
@@ -212,7 +306,33 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name="assumptionscomment" class="form-control" placeholder="assumptions comment"> </textarea>
+                    <textarea name="assumptionscomment" class="form-control" placeholder="assumptions comment"></textarea>
+               
+                </div>
+              </div>
+              
+             </div>  <!--  row  -->
+             
+             
+                   <div class="form-group row">
+            
+              
+				<div class = "col-md-3">
+				<label >Pre Sales Demonstration</label>   
+				</div>
+                <div class="col-md-1">
+                 	
+					 
+					    <select name="presalesgrade" class="form-control">
+					      <option>A</option>
+					      <option>B</option>
+					      <option>C</option>
+					      <option>D</option>
+					    </select>
+                </div>
+                <div class="col-md-8">
+                  <div class="form-label-group">
+                    <textarea name="presalescomment" class="form-control" placeholder="Pre Sales Demonstration comment"></textarea>
                
                 </div>
               </div>
@@ -237,7 +357,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name="externaldcomment" class="form-control" placeholder="External dependencies comment"> </textarea>
+                    <textarea name="externaldcomment" class="form-control" placeholder="External dependencies comment"></textarea>
                
                 </div>
               </div>
@@ -262,7 +382,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="internaldcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="internaldcomment" class="form-control" placeholder="Internal Dependencies comment"></textarea>
                
                 </div>
               </div>
@@ -288,7 +408,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="dmigrationcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="dmigrationcomment" class="form-control" placeholder="Data Migration comment"></textarea>
                
                 </div>
               </div>
@@ -314,7 +434,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="wbscomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="wbscomment" class="form-control" placeholder="WBS comment"></textarea>
                
                 </div>
               </div>
@@ -339,7 +459,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="scopecreepcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="scopecreepcomment" class="form-control" placeholder="Scope Creep and Change Control comment"></textarea>
                
                 </div>
               </div>
@@ -365,7 +485,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="deliverablescomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="deliverablescomment" class="form-control" placeholder="Deliverables comment"></textarea>
                
                 </div>
               </div>
@@ -390,7 +510,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="gatemilestonecomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="gatemilestonecomment" class="form-control" placeholder="Gate Milestone or Deliverable Acceptance comment"></textarea>
                
                 </div>
               </div>
@@ -415,7 +535,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="customerrespcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="customerrespcomment" class="form-control" placeholder="Customer responsibilities comment"></textarea>
                
                 </div>
               </div>
@@ -440,7 +560,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="reqtraccomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="reqtraccomment" class="form-control" placeholder="Requirement Traceability comment"></textarea>
                
                 </div>
               </div>
@@ -463,6 +583,24 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
+      
+             <div class="form-group row">
+            
+              
+				<div class = "col-md-3">
+					<h5> Item </h5>   
+				</div>
+                <div class="col-md-1">
+              	 	<h5> Grade </h5>
+				</div>
+				
+                <div class="col-md-8">
+               		<h5> Comment </h5>
+             	</div>
+              
+             </div>  <!--  row  -->
+             
+             
         <div class="form-group row">
             
               
@@ -481,7 +619,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="schplanningcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="schplanningcomment" class="form-control" placeholder="Schedule Planning comment"></textarea>
                
                 </div>
               </div>
@@ -506,7 +644,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name="baselinecomment" class="form-control" placeholder="assumptions comment"> </textarea>
+                    <textarea name="baselinecomment" class="form-control" placeholder="project schedule baseline comment"></textarea>
                
                 </div>
               </div>
@@ -531,7 +669,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name="schwbscomment" class="form-control" placeholder="External dependencies comment"> </textarea>
+                    <textarea name="schwbscomment" class="form-control" placeholder="DSx.C-P schedule"></textarea>
                
                 </div>
               </div>
@@ -556,7 +694,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="critaskscomment" class="form-control" placeholder="Critical tasks comment"> </textarea>
+                    <textarea name ="critaskscomment" class="form-control" placeholder="Critical tasks comment"></textarea>
                
                 </div>
               </div>
@@ -596,7 +734,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name ="governcomment" class="form-control" placeholder="ORB comment"> </textarea>
+                    <textarea name ="governcomment" class="form-control" placeholder="ORB comment"></textarea>
                
                 </div>
               </div>
@@ -621,8 +759,8 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name="stackholderscomment" class="form-control" placeholder="assumptions comment"> </textarea>
-               
+                    <textarea name="stackholderscomment" class="form-control" placeholder="Stakeholders Management comment"> </textarea>
+
                 </div>
               </div>
               
@@ -646,7 +784,7 @@
                 </div>
                 <div class="col-md-8">
                   <div class="form-label-group">
-                    <textarea name="meetingcomment" class="form-control" placeholder="External dependencies comment"> </textarea>
+                    <textarea name="meetingcomment" class="form-control" placeholder="External dependencies comment"></textarea>
                
                 </div>
               </div>
@@ -1560,8 +1698,10 @@
     </div>
   </div>
   
+            <br>
+            <br>
             
-            <a href="#"> <button type="submit" class="btn btn-primary mb-2"> Validate </button> </a>
+            <a href="#"> <button type="submit" class="btn btn-primary btn-block mb-2"> Save PR </button> </a>
              
         
             
@@ -1580,11 +1720,8 @@
     </div><!-- /.container -->
    
    
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/myjs.js"></script>
+
+<script type="text/javascript" src="/pmodigit/js/bootstrap.min.js"></script>
 
  
 </body>

@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity(name="Item")
@@ -14,14 +16,14 @@ public class Item implements Serializable {
 
 	@Id @GeneratedValue
 	private long id_domain;
-	@Column(name="domain_name")
 	private String domain_name;
-	@Column(name="title")
 	private String item;
-	@Column(name="comment")
 	private String comment;
-	@Column(name="grade")
 	private String grade;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_pr")
+	private ProjectReview project_review;
 	
 	
 	
@@ -67,6 +69,14 @@ public class Item implements Serializable {
 
 	public void setDomain_name(String domain_name) {
 		this.domain_name = domain_name;
+	}
+
+	public ProjectReview getProject_review() {
+		return project_review;
+	}
+
+	public void setProject_review(ProjectReview project_review) {
+		this.project_review = project_review;
 	}
 
 	

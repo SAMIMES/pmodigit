@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" >
     <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="/pmodigit/css/style.css" rel="stylesheet">
     <link  href="../css/all.min.css" rel="stylesheet">
     
      <style>
@@ -29,51 +29,149 @@
 
       <div class="container">
 	
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
-	  <a class="navbar-brand" href="../index.html">PMO</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
+           <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/pmodigit/index.jsp">pmo<font color="blue">Digit</font></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="#">Search</a>
-	      </li>
-	      <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	          Templates
-	        </a>
-	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	          <a class="dropdown-item" href="pr_home.jsp">Project Review</a>
-	          <a class="dropdown-item" href="qa_home.html">Quality Assurance</a>
-	          <a class="dropdown-item" href="#">Action Follow-up</a>
-	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">Calendar</a>
-	        </div>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link disabled" href="#">Dashboard</a>
-	      </li>
-	    </ul>
-	    <!-- Navbar Search -->
-	      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="pmodigit/temp/search.jsp">Search</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Templates
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/pmodigit/temp/pcreation.jsp">Project</a>
+          <a class="dropdown-item" href="/pmodigit/temp/pr_home.jsp">Project Review</a>
+           <a class="dropdown-item" href="/pmodigit/temp/pr_home.jsp">Project Closure</a>
+          <a class="dropdown-item" href="/pmodigit/temp/qa_home.html">Quality Assurance</a>
+          <a class="dropdown-item" href="#..">Action Follow-up</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Calendar</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Dashboard</a>
+      </li>
+       <!-- Navbar Search -->
+       
+       <li>
+       <form class="pl-5" method="POST" action="list">
 	        <div class="input-group">
-	          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+	          <input type="text" class="form-control" placeholder="Search by project title..." aria-label="Search" aria-describedby="basic-addon2">
 	          <div class="input-group-append">
-	            <button class="btn btn-primary" type="button">
+	            <button class="btn btn-primary" type="submit">
 	              <i class="fas fa-search"></i>
 	            </button>
 	          </div>
 	        </div>
 	      </form>
-	  </div>
-	</nav>
+	      
+	     </li>
+	   </ul>
+	   <ul class="navbar-nav pull-right"> 
+	   <c:choose>
+	   <c:when test = "${res == false }">
+          
+         
+       <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" id="navbarDropdown" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Login <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                       <li class="px-3 py-2">
+                           <form method="POST" action="login">
+                                <div class="form-group">
+                                    <input name="username" placeholder="Username" class="form-control form-control-sm" type="text" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input name="password" placeholder="Password" class="form-control form-control-sm" type="password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                </div>
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+                                </div>
+                                
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Register</a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                
+       </li>
+       </c:when>
+       <c:when test = "${res == true}">
+            <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" id="navbarDropdown" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">
+                  
+                
+                    <c:choose>
+         
+         <c:when test = "${sessionUser.userType == 0}">
+           
+          User: <c:out value="${sessionUser.username}"></c:out> 
+          </c:when> 
+          <c:when test = "${sessionUser.userType == 1}">
+           Admin: <c:out value="${sessionUser.username}"></c:out> 
+           </c:when>
+           </c:choose>
+                     
+                     <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                       <li class="px-3 py-2">
+                           <form class="form" role="form">
+                                
+                                <div class="form-group text-center">
+                                    <small><a href="logout"> Logout </a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                
+       </li>
+         </c:when>
+         
+         <c:otherwise>
+          <li class="dropdown order-1">
+                    <button type="button" id="dropdownMenu1" id="navbarDropdown" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Login <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                       <li class="px-3 py-2">
+                           <form method="POST" action="login" role="form">
+                                <div class="form-group">
+                                    <input name="username" placeholder="Username" class="form-control form-control-sm" type="text" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <input name="password" id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="password" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                </div>
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
+                                </div>
+                                
+                                <div class="form-group text-center">
+                                    <small><a href="#" data-toggle="modal" data-target="#modalPassword">Register</a></small>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                
+       </li>
+         </c:otherwise>
+       </c:choose>
+    </ul>
+   
+  </div>
+</nav>
 	<!-- <div class="card card-register mx-auto mt-5">
        <div class="card-header">Scope</div>
        
@@ -82,10 +180,7 @@
    
     
 
-<!-- <div class="alert-box success">Successful Alert !!!</div> -->
-<div class="alert-box failure">Failure Alert !!!</div>
-<div class="alert-box warning">Warning Alert !!!</div>	
-     		 
+
      		 
 
               
@@ -229,11 +324,11 @@
     <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+        <h4 class="modal-title custom_align" id="Heading">Delete Project</h4>
       </div>
           <div class="modal-body">
        
-       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this project?</div>
        
       </div>
         <div class="modal-footer ">

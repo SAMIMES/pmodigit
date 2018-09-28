@@ -1,4 +1,4 @@
-<%@page import="entities.Item"%>
+<%@page import="entity.Item"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/pmodigit/css/bootstrap.min.css" >
     <!-- Custom styles for this template -->
-    <link href="../css/style.css" rel="stylesheet">
-	<link  href="../css/all.min.css" rel="stylesheet">
+    <link href="/pmodigit/css/style.css" rel="stylesheet">
+	<link  href="/pmodigit/css/all.min.css" rel="stylesheet">
      <style>
             .ui-autocomplete-loading {
                 background: white url("img/anim_16x16.gif") right center no-repeat;
@@ -34,7 +34,7 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
       
-	  <a class="navbar-brand" href="../index.html">PMO</a>
+	  <a class="navbar-brand" href="/pmodigit/index.jsp">PMO</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -95,21 +95,20 @@
         
    
     
-
-<!-- <div class="alert-box success">Successful Alert !!!</div> -->
-<div class="alert-box failure">Failure Alert !!!</div>
-<div class="alert-box warning">Warning Alert !!!</div>	
-     		 
+<!-- <c:if test="${flag==true}">
+<div class="alert alert-success" role="alert">
+  <c:out value="${result}" />
+</div>
+ </c:if>     -->		 
  
-<c:forEach items="${liste}" var="c">
-  <p><c:out value="${c.id_pr}" /></p>
-</c:forEach>
+
+<c:if test="${flag==true}">
 
 	<div class="row">
 		
   
         <div class="col-md-12">
-        <h4>Bootstrap Snipp for Datatable</h4>
+        <h4>Projects list</h4>
         <div class="table-responsive">
 
                 
@@ -117,109 +116,38 @@
                    
                    <thead>
                    
-                   <th><input type="checkbox" id="checkall" /></th>
-                   <th>First Name</th>
-                    <th>Last Name</th>
-                     <th>Address</th>
-                     <th>Email</th>
-                     <th>Contact</th>
+                   <th>Project ID</th>
+                   <th>Project Title</th>
+                    <th>Customer</th>
+                     <th>Project Manager</th>
+                     <th>Date</th>
+                     <th>PR Count</th>
                       <th>Edit</th>
                       
                        <th>Delete</th>
                    </thead>
     <tbody>
     
+    <c:forEach items="${liste}" var="c">
+
     <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td>dada</td>
-    <td>Irshad</td>
-    <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-    <td>isometric.mohsin@gmail.com</td>
-    <td>+923335586757</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><i class="fas fa-pencil-alt"></i></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
-    </tr>
-  
- <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td>Mohsin</td>
-    <td>Irshad</td>
-    <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-    <td>isometric.mohsin@gmail.com</td>
-    <td>+923335586757</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><i class="fas fa-pencil-alt"></i></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
+    <td>${c.project_id}</td>
+    <td><a href="${pageContext.request.contextPath}/listpr?idtitle=${c.project_title}">${c.project_title}</a></td>
+    <td><a href="${pageContext.request.contextPath}/listpr?idtitle=${c.project_title}">${c.customer}</a></td>
+    <td><a href="${pageContext.request.contextPath}/listpr?idtitle=${c.project_title}">${c.pm}</a></td>
+    <td>${c.date}</td>
+    <td>28</td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_${c.project_title}" ><i class="fas fa-pencil-alt"></i></button></p></td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete_${c.project_title}" ><i class="fa fa-trash"></i></button></p></td>
     </tr>
     
     
- <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td>Mohsin</td>
-    <td>Irshad</td>
-    <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-    <td>isometric.mohsin@gmail.com</td>
-    <td>+923335586757</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><i class="fas fa-pencil-alt"></i></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
-    </tr>
-    
-    
-    
- <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td>Mohsin</td>
-    <td>Irshad</td>
-    <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-    <td>isometric.mohsin@gmail.com</td>
-    <td>+923335586757</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><i class="fas fa-pencil-alt"></i></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
-    </tr>
-    
-    
- <tr>
-    <td><input type="checkbox" class="checkthis" /></td>
-    <td>Mohsin</td>
-    <td>Irshad</td>
-    <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-    <td>isometric.mohsin@gmail.com</td>
-    <td>+923335586757</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><i class="fas fa-pencil-alt"></i></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
-    </tr>
-    
-   
-    
-   
-    
-    </tbody>
-        
-</table>
-
-<div class="clearfix"></div>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
-                
-            </div>
-            
-        </div>
-	</div>
-</div>
-
-
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal fade" id="edit_${c.project_title}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+        <h4 class="modal-title custom_align" id="Heading">Edit Project</h4>
       </div>
           <div class="modal-body">
           <div class="form-group">
@@ -236,7 +164,7 @@
         </div>
       </div>
           <div class="modal-footer ">
-        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><i class="icon-ok-sign"></i> Update</button>
       </div>
         </div>
     <!-- /.modal-content --> 
@@ -246,30 +174,162 @@
     
     
     
-    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal fade" id="delete_${c.project_title}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
       <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+        <h4 class="modal-title custom_align" id="Heading">Delete this project</h4>
       </div>
           <div class="modal-body">
        
-       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
+       <div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> Are you sure you want to delete this Record?</div>
        
       </div>
         <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+        <a href="${pageContext.request.contextPath}/delete?id=${c.project_title}"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon-remove"></i> No</button>
       </div>
         </div>
     <!-- /.modal-content --> 
   </div>
+</div>
+    
+    </c:forEach>    
+    </tbody>
+        
+</table>
 
 
+                
+            </div>
+            
+        </div>
+	</div> <!--  row -->
+
+
+</c:if>
+
+
+<c:if test="${flag==false}">
+
+	<div class="row">
+		
+  
+        <div class="col-md-12">
+        <h4>Projects list</h4>
+        <div class="table-responsive">
+
+                
+              <table id="mytable" class="table table-bordred table-striped">
+                   
+                   <thead>
+    
+                   <th>Project ID</th>
+                   <th>Project Title</th>
+                    <th>Customer</th>
+                     <th>Project Manager</th>
+                     <th>Date</th>
+                     <th>PR Count</th>
+                      <th>Edit</th>
+                      
+                       <th>Delete</th>
+                   </thead>
+    <tbody>
+    
+    <c:forEach items="${liste_projects}" var="c">
+
+    <tr>
+    <td>${c.project_id}</td>
+    <td><a href="${pageContext.request.contextPath}/listpr?idtitle=${c.project_title}">${c.project_title}</a></td>
+    <td><a href="${pageContext.request.contextPath}/listpr?idtitle=${c.project_title}">${c.customer}</a></td>
+    <td><a href="${pageContext.request.contextPath}/listpr?idtitle=${c.project_title}">${c.pm}</a></td>
+    <td>${c.date}</td>
+    <td>28</td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_${c.project_title}" ><i class="fas fa-pencil-alt"></i></button></p></td>
+    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete_${c.project_title}" ><i class="fa fa-trash"></i></button></p></td>
+    </tr>
+    
+    
+    <div class="modal fade" id="edit_${c.project_title}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Edit Project</h4>
+      </div>
+          <div class="modal-body">
+          <div class="form-group">
+        <input class="form-control " type="text" placeholder="Mohsin">
+        </div>
+        <div class="form-group">
+        
+        <input class="form-control " type="text" placeholder="Irshad">
+        </div>
+        <div class="form-group">
+        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
+    
+        
+        </div>
+      </div>
+          <div class="modal-footer ">
+        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><i class="icon-ok-sign"></i> Update</button>
+      </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+      <!-- /.modal-dialog --> 
+    </div>
+    
+    
+    
+    <div class="modal fade" id="delete_${c.project_title}" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+          <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+        <h4 class="modal-title custom_align" id="Heading">Delete this project</h4>
+      </div>
+          <div class="modal-body">
+       
+       <div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> Are you sure you want to delete this Record?</div>
+       
+      </div>
+        <div class="modal-footer ">
+        <a href="${pageContext.request.contextPath}/delete?id=${c.project_title}"><button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button></a>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon-remove"></i> No</button>
+      </div>
+        </div>
+    <!-- /.modal-content --> 
+  </div>
+</div>
+    
+    </c:forEach>    
+    </tbody>
+        
+</table>
+
+
+                
+            </div>
+            
+        </div>
+	</div> <!--  row -->
+
+
+</c:if>
     
    
-            
+  <div class="clearfix"></div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>          
          
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
@@ -281,8 +341,8 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/myjs.js"></script>
+<script type="text/javascript" src="/pmodigit/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/pmodigit/js/myjs.js"></script>
 
  
 </body>
